@@ -113,7 +113,9 @@ input, select, textarea { font-family: inherit; font-size: 14px; }
   width: 3px; height: 18px; border-radius: 0 3px 3px 0;
   background: linear-gradient(180deg, var(--accent), var(--primary));
 }
-.nav-icon { font-size: 16px; opacity: 0.8; }
+.nav-icon { opacity: 0.85; display: flex; align-items: center; }
+.nav-item.active .nav-icon { opacity: 1; color: var(--accent); }
+.nav-item:hover .nav-icon { opacity: 1; }
 .nav-badge {
   margin-left: auto;
   background: var(--accent);
@@ -350,16 +352,6 @@ input, select, textarea { font-family: inherit; font-size: 14px; }
   transform: translateY(-1px);
 }
 .danger-btn .danger-icon { font-size: 12px; }
-
-.orphan-action[data-act="delete"] {
-  color: var(--danger);
-  border-color: rgba(248, 113, 113, 0.3);
-}
-.orphan-action[data-act="delete"]:hover {
-  background: var(--danger);
-  color: #1a0808;
-  border-color: var(--danger);
-}
 
 .celebration {
   background: rgba(0, 0, 0, 0.75);
@@ -685,10 +677,12 @@ input, select, textarea { font-family: inherit; font-size: 14px; }
   width: 28px; height: 28px;
   border-radius: 6px;
   display: grid; place-items: center;
-  font-size: 12px;
   transition: 0.15s;
+  padding: 0;
 }
+.orphan-action svg { width: 14px; height: 14px; }
 .orphan-action:hover { color: var(--text); border-color: var(--border-2); }
+.orphan-action[data-act="delete"]:hover { color: var(--danger); border-color: rgba(248,113,113,0.4); background: rgba(248,113,113,0.08); }
 
 .empty-state {
   display: grid; place-items: center;
@@ -920,7 +914,7 @@ kbd {
   transition: 0.15s ease;
 }
 .qa-btn:hover { background: var(--bg-elev-2); border-color: var(--border-2); transform: translateY(-1px); }
-.qa-icon { font-size: 18px; }
+.qa-icon { display: flex; align-items: center; justify-content: center; }
 .qa-label { font-weight: 600; font-size: 13px; }
 .qa-sub { color: var(--text-dim); font-size: 11px; }
 

@@ -429,11 +429,11 @@ function renderOrphans() {
         <div style="text-align:right">
           <div class="orphan-size">${humanSize(o.size_bytes)}</div>
           <div class="orphan-actions" style="margin-top:6px">
-            <button class="orphan-action" data-act="detail" title="View details">i</button>
-            <button class="orphan-action" data-act="reveal" title="Show in Explorer">↗</button>
-            <button class="orphan-action" data-act="whitelist" title="Whitelist this">⊘</button>
-            <button class="orphan-action" data-act="copy" title="Copy path">⎘</button>
-            <button class="orphan-action" data-act="delete" title="Move to Recycle Bin">🗑</button>
+            <button class="orphan-action" data-act="detail" title="View details"><svg viewBox="0 0 24 24" width="14" height="14"><circle cx="12" cy="12" r="10" fill="none" stroke="currentColor" stroke-width="2"/><line x1="12" y1="16" x2="12" y2="12" stroke="currentColor" stroke-width="2" stroke-linecap="round"/><line x1="12" y1="8" x2="12.01" y2="8" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg></button>
+            <button class="orphan-action" data-act="reveal" title="Show in Explorer"><svg viewBox="0 0 24 24" width="14" height="14"><use href="#ico-external"/></svg></button>
+            <button class="orphan-action" data-act="whitelist" title="Whitelist this"><svg viewBox="0 0 24 24" width="14" height="14"><use href="#ico-plus"/></svg></button>
+            <button class="orphan-action" data-act="copy" title="Copy path"><svg viewBox="0 0 24 24" width="14" height="14"><use href="#ico-copy"/></svg></button>
+            <button class="orphan-action" data-act="delete" title="Move to Recycle Bin"><svg viewBox="0 0 24 24" width="14" height="14"><use href="#ico-trash"/></svg></button>
           </div>
         </div>
       </div>
