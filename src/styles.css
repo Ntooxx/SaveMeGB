@@ -37,6 +37,12 @@ body {
 
 [hidden] { display: none !important; }
 
+/* SVG icon reset */
+svg { display: inline-block; vertical-align: middle; flex-shrink: 0; }
+.nav-icon svg, .qa-icon svg, .strategy-title svg, .empty-icon svg { color: inherit; }
+.modal-close svg { pointer-events: none; }
+button .ghost-btn svg, .primary-btn svg, .danger-btn svg { opacity: 0.9; }
+
 button { font-family: inherit; cursor: pointer; }
 input, select, textarea { font-family: inherit; font-size: 14px; }
 
