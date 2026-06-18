@@ -19,6 +19,11 @@ path = "src/main.rs"
 name = "savemegb-cli"
 path = "src/bin/cli.rs"
 
+[[bin]]
+name = "keygen"
+path = "src/bin/keygen.rs"
+required-features = ["keygen"]
+
 [build-dependencies]
 tauri-build = { version = "2", features = [] }
 
@@ -44,9 +49,13 @@ parking_lot = "0.12"
 uuid = { version = "1", features = ["v4", "serde"] }
 log = "0.4"
 env_logger = "0.11"
-hmac = "0.12"
+ed25519-dalek = { version = "2", features = ["rand_core", "fast"] }
 sha2 = "0.10"
 hex = "0.4"
+rand = "0.8"
+
+[features]
+keygen = []
 
 [target.'cfg(windows)'.dependencies]
 windows-sys = { version = "0.59", features = ["Win32_Foundation", "Win32_Storage_FileSystem"] }

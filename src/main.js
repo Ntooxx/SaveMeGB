@@ -22,7 +22,6 @@ const state = {
   scanning: false,
   lastPurge: null,
   lastPurgeErrors: [],
-  pro: false,
 };
 
 const els = {
@@ -96,10 +95,6 @@ const els = {
   setConf: document.getElementById("set-conf"),
   setConfVal: document.getElementById("set-conf-val"),
   setMode: document.getElementById("set-mode"),
-  proStatus: document.getElementById("pro-status"),
-  setLicense: document.getElementById("set-license"),
-  activateLicense: document.getElementById("activate-license"),
-  deactivateLicense: document.getElementById("deactivate-license"),
   confirmModal: document.getElementById("confirm-modal"),
   confirmTitle: document.getElementById("confirm-title"),
   confirmBody: document.getElementById("confirm-body"),
@@ -240,35 +235,6 @@ if (els.deleteVisible) els.deleteVisible.addEventListener("click", deleteAllVisi
 if (els.celebrationRecycle) els.celebrationRecycle.addEventListener("click", async () => { try { await invoke("open_recycle_bin"); } catch (e) {} });
 if (els.celebrationAgain) els.celebrationAgain.addEventListener("click", () => { hideModal(els.celebrationModal); switchScreen("results"); });
 if (els.celebrationClose) els.celebrationClose.addEventListener("click", () => { hideModal(els.celebrationModal); stopConfetti(); });
-
-if (els.activateLicense) {
-  els.activateLicense.addEventListener("click", async () => {
-    const key = els.setLicense.value.trim();
-    if (!key) { toast("Enter a license key", "warn"); return; }
-    try {
-      els.activateLicense.disabled = true;
-      els.activateLicense.textContent = "Activating…";
-      const info = await invoke("activate_license", { key });
-      toast(`Pro activated! Key: ${info.key_preview}`, "ok", 6000);
-      await loadLicense();
-    } catch (e) {
-      toast(`Activation failed: ${e}`, "err", 6000);
-    } finally {
-      els.activateLicense.disabled = false;
-      els.activateLicense.textContent = "Activate Pro ($2 lifetime)";
-    }
-  });
-}
-if (els.deactivateLicense) {
-  els.deactivateLicense.addEventListener("click", async () => {
-    if (!confirm("Deactivate Pro? You can re-activate with the same key later.")) return;
-    try {
-      await invoke("deactivate_license");
-      toast("Pro deactivated", "ok");
-      await loadLicense();
-    } catch (e) { toast(`Failed: ${e}`, "err"); }
-  });
-}
 
 document.addEventListener("keydown", (e) => {
   if (e.target.tagName === "INPUT" || e.target.tagName === "TEXTAREA" || e.target.isContentEditable) return;
@@ -1251,30 +1217,7 @@ async function saveSettingsSilent() {
   try { await invoke("save_settings", { settings: state.settings }); } catch (e) { /* ignore */ }
 }
 
-function openSettings() { applySettings(); showModal(els.settingsModal); loadLicense(); }
-
-async function loadLicense() {
-  if (!els.proStatus) return;
-  try {
-    const info = await invoke("get_license");
-    if (info) {
-      state.pro = true;
-      els.proStatus.innerHTML = `<span class="accent">✓ Pro activated</span> · key ${escapeHtml(info.key_preview)}`;
-      if (els.activateLicense) els.activateLicense.style.display = "none";
-      if (els.deactivateLicense) els.deactivateLicense.style.display = "block";
-      if (els.setLicense) els.setLicense.value = "";
-    } else {
-      state.pro = false;
-      els.proStatus.innerHTML = `Free version. Pro adds scheduled auto-cleanup, cloud backup, and unlimited history. <a href="#" id="pro-buy-link" style="color:var(--accent)">Buy Pro ($2)</a>`;
-      if (els.activateLicense) els.activateLicense.style.display = "block";
-      if (els.deactivateLicense) els.deactivateLicense.style.display = "none";
-      const link = document.getElementById("pro-buy-link");
-      if (link) link.addEventListener("click", (e) => { e.preventDefault(); invoke("open_in_explorer", { path: "https://github.com/Ntooxx/SaveMeGB" }).catch(() => window.open("https://github.com/Ntooxx/SaveMeGB", "_blank")); });
-    }
-  } catch (e) {
-    els.proStatus.textContent = `License check failed: ${e}`;
-  }
-}
+function openSettings() { applySettings(); showModal(els.settingsModal); }
 
 async function sendNotification(title, body) {
   try {

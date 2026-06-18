@@ -13,14 +13,13 @@ This is the public roadmap for SaveMeGB. It changes based on user feedback, tech
 - Recycle Bin, Backup folder, Force Delete strategies
 - Whitelist, export, dark/light themes
 
-## v0.2.0 — Pro tier 🚧
+## v0.2.0 — More features 📅
 
-- License key activation (offline Ed25519 signature)
 - Scheduled auto-cleanup (weekly / monthly)
 - Cloud backup of saves before delete (OneDrive / Dropbox sync folder)
-- Unlimited history (free tier limited to 30 events)
 - Custom save paths (add paths the scanner doesn't know about)
-- Pricing: $2 lifetime via Gumroad
+- Compact list view
+- Right-click context menus
 
 ## v0.3.0 — Polish
 
