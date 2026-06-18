@@ -1,0 +1,26 @@
+{
+  "name": "savemegb",
+  "productName": "SaveMeGB",
+  "private": true,
+  "version": "0.1.0",
+  "type": "module",
+  "description": "Reclaim gigabytes of SSD space by finding orphaned game saves and caches",
+  "scripts": {
+    "tauri": "tauri",
+    "dev": "tauri dev",
+    "build": "tauri build"
+  },
+  "keywords": [
+    "game-saves",
+    "cleanup",
+    "ssd",
+    "storage",
+    "reclaim",
+    "tauri",
+    "rust"
+  ],
+  "license": "MIT",
+  "devDependencies": {
+    "@tauri-apps/cli": "^2"
+  }
+}
